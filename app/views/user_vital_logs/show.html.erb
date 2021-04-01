@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user_vital_log.user.first_name %> <%= @user_vital_log.user.last_name %>
+</p>
+
+<p>
+  <strong>Logged on:</strong>
+  <%= @user_vital_log.logged_on %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @user_vital_log.notes %>
+</p>
+
+<p>
+  <strong>Pressure:</strong>
+  <%= @user_vital_log.pressure %>
+</p>
+
+<p>
+  <strong>Sugar:</strong>
+  <%= @user_vital_log.sugar %>
+</p>
+
+<p>
+  <strong>Temperature:</strong>
+  <%= @user_vital_log.temperature %>
+</p>
+
+<p>
+  <strong>Pulse:</strong>
+  <%= @user_vital_log.pulse %>
+</p>
+
+<%= link_to 'Edit', edit_user_vital_log_path(@user_vital_log), class: 'pure-button  pure-button-primary'  %> |
+<%= link_to 'Back', user_vital_logs_path, class: 'pure-button  button-secondary'  %>

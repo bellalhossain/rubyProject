@@ -1,0 +1,45 @@
+<%= form_with(model: medicine_intake_log, class: 'pure-form pure-form-aligned', local: true) do |form| %>
+  <% if medicine_intake_log.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(medicine_intake_log.errors.count, "error") %> prohibited this medicine_intake_log from being saved:</h2>
+
+      <ul>
+      <% medicine_intake_log.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field pure-control-group">
+    <%= form.label :prescribed_medicine_id %>
+    <%= form.select :prescribed_medicine_id, options_for_select(@prescribed_medicines.map{ |pm| [pm.medicine.name, pm.id, {'prescription'=>pm.prescription}] }, selected_key = form.object.prescribed_medicine_id) %>
+  </div>
+
+  <% if @user %>
+    <div class="field pure-control-group">User: <%= @user.first_name %>&nbsp;<%= @user.last_name %></div>
+    <%= form.hidden_field :user_id, :value => @user.id%>
+  <% else %>
+    <div class="field pure-control-group">
+      <%= form.label :user_id %>
+      <%= form.select :user_id, options_for_select(@users.map{ |u| [u.first_name+' '+u.last_name, u.id, {'username'=>u.username}] }, selected_key = form.object.user_id) %>
+    </div>
+  <% end %>
+  <div class="field pure-control-group">
+    <%= form.label :logged_on %>
+    <%= form.datetime_select :logged_on, id: :medicine_intake_log_logged_on %>
+  </div>
+
+  <div class="field pure-control-group">
+    <%= form.label :notes %>
+    <%= form.text_area :notes, id: :medicine_intake_log_notes %>
+  </div>
+
+  <div class="field pure-control-group">
+    <%= form.label :part_of_day %>
+    <%= form.text_field :part_of_day, id: :medicine_intake_log_part_of_day %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'submit', :class => 'pure-button'%>
+  </div>
+<% end %>

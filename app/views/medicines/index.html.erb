@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Medicines</h1>
+
+<table class="pure-table pure-table-bordered">
+  <thead>
+    <tr class="<%= cycle('pure-table-odd', '') -%>">
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Is acidic</th>
+      <th>Infant safe</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @medicines.each do |medicine| %>
+      <tr class="<%= cycle('pure-table-odd', '') -%>">
+        <td><%= medicine.name %></td>
+        <td><%= medicine.description %></td>
+        <td><%= medicine.medicine_type %></td>
+        <td><%= medicine.is_acidic %></td>
+        <td><%= medicine.infant_safe %></td>
+        <td><%= link_to 'Show', medicine, class: 'pure-button  pure-button-primary'  %></td>
+        <td><%= link_to 'Edit', edit_medicine_path(medicine), class: 'pure-button  button-secondary'  %></td>
+        <td><%= link_to 'Destroy', medicine, method: :delete, data: { confirm: 'Are you sure?' }, class: 'pure-button  button-warning'  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Medicine', new_medicine_path, class: 'pure-button  button-secondary'  %>

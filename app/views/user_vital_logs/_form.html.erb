@@ -1,0 +1,56 @@
+<%= form_with(model: user_vital_log, class: 'pure-form pure-form-aligned', local: true) do |form| %>
+  <% if user_vital_log.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user_vital_log.errors.count, "error") %> prohibited this user_vital_log from being saved:</h2>
+
+      <ul>
+      <% user_vital_log.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if @user %>
+    <div class="field pure-control-group">User: <%= @user.first_name %>&nbsp;<%= @user.last_name %></div>
+    <%= form.hidden_field :user_id, :value => @user.id%>
+  <% else %>
+    <div class="field pure-control-group">
+      <%= form.label :user_id %>
+      <%= form.select :user_id, options_for_select(@users.map{ |u| [u.first_name+' '+u.last_name, u.id, {'username'=>u.username}] }, selected_key = form.object.user_id) %>
+      </div>
+  <% end %>
+  <div class="field pure-control-group">
+    <%= form.label :logged_on %>
+    <%= form.datetime_select :logged_on, id: :user_vital_log_logged_on %>
+  </div>
+
+  <div class="field pure-control-group">
+    <%= form.label :notes %>
+    <%= form.text_area :notes, id: :user_vital_log_notes %>
+  </div>
+
+  <div class="field pure-control-group">
+    <%= form.label :pressure %>
+    <%= form.text_field :pressure, id: :user_vital_log_pressure %>
+  </div>
+
+  <div class="field pure-control-group">
+    <%= form.label :sugar %>
+    <%= form.text_field :sugar, id: :user_vital_log_sugar %>
+  </div>
+
+  <div class="field pure-control-group">
+    <%= form.label :temperature %>
+    <%= form.text_field :temperature, id: :user_vital_log_temperature %>
+  </div>
+
+  <div class="field pure-control-group">
+    <%= form.label :pulse %>
+    <%= form.text_field :pulse, id: :user_vital_log_pulse %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'submit', :class => 'pure-button'%>
+  </div>
+<% end %>
