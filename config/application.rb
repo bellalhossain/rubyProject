@@ -1,7 +1,7 @@
 require_relative "boot"
 
 require "rails/all"
-config.assets.initialize_on_precompile = false
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -14,7 +14,7 @@ module Gemprimeapp
    # config.eager_load_paths << Rails.root.join('lib')
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
-    
+    config.assets.initialize_on_precompile = false
 
     # Configuration for the application, engines, and railties goes here.
     #
